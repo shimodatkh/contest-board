@@ -1,7 +1,7 @@
 package main
 
 import (
-	pb "../proto/contest_board"
+	pb "github.com/shimodatkh/contest-board/proto/contestboard"
 )
 
 type contestBoardServer struct {
