@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option go_package = "../";
+
+package contestboard;
+
+service ContestBoard {
+    // rpc GetMeasurement(GetMeasurementReq) returns (GetMeasurementRes) {}
+    rpc PutMeasurement(PutMeasurementReq) returns (PutMeasurementRes) {}
+}
+
+message PutMeasurementReq{
+    int32 id = 1;
+    float score = 2;
+}
+
+message PutMeasurementRes{
+    int32 id = 1;
+    float score = 2;
+}
