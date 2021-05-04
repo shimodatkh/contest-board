@@ -1,5 +1,5 @@
-module github.com/shimodatkh/contest-board/server
+module github.com/shimodatkh/contest-board/v2
 
-go 1.16
+go 1.14
 
-replace github.com/shimodatkh/contest-board/proto => ../proto
+require github.com/shimodatkh/contest-board/proto v0.0.0-20210504142647-e7139a55d858

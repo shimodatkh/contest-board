@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 
-	pb "github.com/shimodatkh/contest-board/proto/contestboard"
+	pb "github.com/shimodatkh/contest-board/proto"
 )
 
 type contestBoardServer struct {
