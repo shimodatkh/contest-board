@@ -5,4 +5,5 @@ go 1.16
 replace (
 	github.com/shimodatkh/contest-board/proto => ./proto
 	github.com/shimodatkh/contest-board/server => ./server
+	github.com/shimodatkh/contest-board/client => ./client
 )
