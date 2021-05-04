@@ -7,6 +7,7 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -20,6 +21,7 @@ const _ = grpc.SupportPackageIsVersion7
 type ContestBoardClient interface {
 	// rpc GetMeasurement(GetMeasurementReq) returns (GetMeasurementRes) {}
 	PutMeasurement(ctx context.Context, in *PutMeasurementReq, opts ...grpc.CallOption) (*PutMeasurementRes, error)
+	GetMeasurements(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetMeasurementsRes, error)
 }
 
 type contestBoardClient struct {
@@ -39,12 +41,22 @@ func (c *contestBoardClient) PutMeasurement(ctx context.Context, in *PutMeasurem
 	return out, nil
 }
 
+func (c *contestBoardClient) GetMeasurements(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetMeasurementsRes, error) {
+	out := new(GetMeasurementsRes)
+	err := c.cc.Invoke(ctx, "/contestboard.ContestBoard/GetMeasurements", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ContestBoardServer is the server API for ContestBoard service.
 // All implementations must embed UnimplementedContestBoardServer
 // for forward compatibility
 type ContestBoardServer interface {
 	// rpc GetMeasurement(GetMeasurementReq) returns (GetMeasurementRes) {}
 	PutMeasurement(context.Context, *PutMeasurementReq) (*PutMeasurementRes, error)
+	GetMeasurements(context.Context, *emptypb.Empty) (*GetMeasurementsRes, error)
 	mustEmbedUnimplementedContestBoardServer()
 }
 
@@ -54,6 +66,9 @@ type UnimplementedContestBoardServer struct {
 
 func (UnimplementedContestBoardServer) PutMeasurement(context.Context, *PutMeasurementReq) (*PutMeasurementRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PutMeasurement not implemented")
+}
+func (UnimplementedContestBoardServer) GetMeasurements(context.Context, *emptypb.Empty) (*GetMeasurementsRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetMeasurements not implemented")
 }
 func (UnimplementedContestBoardServer) mustEmbedUnimplementedContestBoardServer() {}
 
@@ -86,6 +101,24 @@ func _ContestBoard_PutMeasurement_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ContestBoard_GetMeasurements_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ContestBoardServer).GetMeasurements(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/contestboard.ContestBoard/GetMeasurements",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ContestBoardServer).GetMeasurements(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ContestBoard_ServiceDesc is the grpc.ServiceDesc for ContestBoard service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -96,6 +129,10 @@ var ContestBoard_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "PutMeasurement",
 			Handler:    _ContestBoard_PutMeasurement_Handler,
+		},
+		{
+			MethodName: "GetMeasurements",
+			Handler:    _ContestBoard_GetMeasurements_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

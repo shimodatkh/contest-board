@@ -24,6 +24,11 @@ func (s *contestBoardServer) PutMeasurement(ctx context.Context, req *pb.PutMeas
 	return &pb.PutMeasurementRes{Id: req.Id, Score: req.Score}, nil
 }
 
+func (s *contestBoardServer) GetMeasurements(ctx context.Context) (*pb., error) {
+	log.Printf("receive GetMeasurements")
+	return &pb.PutMeasurementRes{Id: req.Id, Score: req.Score}, nil
+}
+
 func newServer() *contestBoardServer {
 	s := &contestBoardServer{}
 	return s
