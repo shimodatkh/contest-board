@@ -13,6 +13,7 @@ import (
 )
 
 var (
+	host = "0.0.0.0"
 	port = flag.Int("port", 9090, "The server port")
 )
 
@@ -44,13 +45,13 @@ func newServer() *contestBoardServer {
 
 func main() {
 	flag.Parse()
-	lis, err := net.Listen("tcp", fmt.Sprintf("localhost:%d", *port))
+	lis, err := net.Listen("tcp", fmt.Sprintf("%s:%d", host, *port))
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}
 	var opts []grpc.ServerOption
 	grpcServer := grpc.NewServer(opts...)
 	pb.RegisterContestBoardServer(grpcServer, newServer())
-	log.Printf("start server. port: %d", *port)
+	log.Printf("start server. host:%s, port: %d", host, *port)
 	grpcServer.Serve(lis)
 }

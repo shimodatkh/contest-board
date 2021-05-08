@@ -77,7 +77,7 @@ const { GetMeasurementsReq } = todo_pb;
 const { ContestBoardClient } = grpc_web;
 
 export const todos = ref([]);
-const client = new ContestBoardClient("http://localhost:8081", null, null);
+const client = new ContestBoardClient("http://localhost:8080", null, null);
 console.log("tes");
 export const getMeasures = () => {
   let getRequest = new GetMeasurementsReq();

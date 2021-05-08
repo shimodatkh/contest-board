@@ -3,26 +3,26 @@ version: '3'
 services: 
   web:
     build: ./client
-    image: todo-grpc-vue-client:v1
+    image: contest-board-grpc-vue-client:v1
     ports: 
       - 3000:3000
     restart: unless-stopped
     networks:
-      - grpc-todolist
+      - grpc-contest-board
   proxy:
     build: ./envoy
-    image: todo-grpc-envoy:v1
+    image: contest-board-grpc-envoy:v1
     ports: 
       - 8080:8080
     restart: unless-stopped
     networks: 
-      - grpc-todolist
+      - grpc-contest-board
   server:
     build: ./server
-    image: todo-grpc-server:v1
+    image: contest-board-grpc-server:v1
     restart: unless-stopped
     networks:
-      - grpc-todolist
+      - grpc-contest-board
 networks:
-  grpc-todolist:
+  grpc-contest-board:
     driver: bridge
