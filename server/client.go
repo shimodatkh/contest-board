@@ -8,11 +8,10 @@ import (
 
 	pb "github.com/shimodatkh/contest-board/proto"
 	"google.golang.org/grpc"
-	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 var (
-	serverAddr = flag.String("server_addr", "localhost:8081", "The server address in the format of host:port")
+	serverAddr = flag.String("server_addr", "localhost:9090", "The server address in the format of host:port")
 )
 
 func putMeasure(client pb.ContestBoardClient, measure *pb.PutMeasurementReq) {
@@ -26,15 +25,15 @@ func putMeasure(client pb.ContestBoardClient, measure *pb.PutMeasurementReq) {
 	log.Println(feature)
 }
 
-func getMeasures(client pb.ContestBoardClient) {
+func getMeasures(client pb.ContestBoardClient, req *pb.GetMeasurementsReq) {
 	log.Printf("[Client] kick GetMeasurements")
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
-	measures, err := client.GetMeasurements(ctx, &emptypb.Empty{})
+	measures, err := client.GetMeasurements(ctx, req)
 	if err != nil {
 		log.Fatalf("%v.GetMeasurements(_) = _, %v: ", client, err)
 	}
-	log.Println(len(measures.Measurement))
+	log.Println(len(measures.Measurements))
 	log.Println(measures)
 }
 
@@ -43,6 +42,7 @@ func main() {
 	var opts []grpc.DialOption
 	opts = append(opts, grpc.WithInsecure())
 	opts = append(opts, grpc.WithBlock())
+	log.Printf("dial to %s", *serverAddr)
 	conn, err := grpc.Dial(*serverAddr, opts...)
 	if err != nil {
 		log.Fatalf("fail to dial: %v", err)
@@ -56,6 +56,6 @@ func main() {
 	putMeasure(client, &pb.PutMeasurementReq{Id: 125, Score: 210.8})
 	putMeasure(client, &pb.PutMeasurementReq{Id: 126, Score: 12410.8})
 
-	getMeasures(client)
+	getMeasures(client, &pb.GetMeasurementsReq{})
 
 }

@@ -1,7 +1,20 @@
+# contest-board
+ISUCON用解析ダッシュボード
+
+
 # proto生成
 ```sh
-protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative proto/contest_board.proto 
-protoc contest_board.proto -I=./proto --js_out=import_style=commonjs,binary:front/client/src/ --grpc-web_out=import_style=commonjs,mode=grpcwebtext:front/client/src/
+./proto.sh
 ```
 
+# サービス単体のDocker動作確認
 
+```shell
+sudo docker build .
+sudo docker run --publish 3000:3000 --detach eb6ae530ed90
+sudo docker run --publish 9090:9090 --detach 928c7a362bb6
+sudo docker ps
+
+sudo docker exec -it determined_villani bash
+
+```
