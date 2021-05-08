@@ -15,8 +15,6 @@
 const grpc = {};
 grpc.web = require('grpc-web');
 
-
-var google_protobuf_empty_pb = require('google-protobuf/google/protobuf/empty_pb.js')
 const proto = {};
 proto.contestboard = require('./contest_board_pb.js');
 
@@ -155,16 +153,16 @@ proto.contestboard.ContestBoardPromiseClient.prototype.putMeasurement =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.google.protobuf.Empty,
+ *   !proto.contestboard.GetMeasurementsReq,
  *   !proto.contestboard.GetMeasurementsRes>}
  */
 const methodDescriptor_ContestBoard_GetMeasurements = new grpc.web.MethodDescriptor(
   '/contestboard.ContestBoard/GetMeasurements',
   grpc.web.MethodType.UNARY,
-  google_protobuf_empty_pb.Empty,
+  proto.contestboard.GetMeasurementsReq,
   proto.contestboard.GetMeasurementsRes,
   /**
-   * @param {!proto.google.protobuf.Empty} request
+   * @param {!proto.contestboard.GetMeasurementsReq} request
    * @return {!Uint8Array}
    */
   function(request) {
@@ -177,13 +175,13 @@ const methodDescriptor_ContestBoard_GetMeasurements = new grpc.web.MethodDescrip
 /**
  * @const
  * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.google.protobuf.Empty,
+ *   !proto.contestboard.GetMeasurementsReq,
  *   !proto.contestboard.GetMeasurementsRes>}
  */
 const methodInfo_ContestBoard_GetMeasurements = new grpc.web.AbstractClientBase.MethodInfo(
   proto.contestboard.GetMeasurementsRes,
   /**
-   * @param {!proto.google.protobuf.Empty} request
+   * @param {!proto.contestboard.GetMeasurementsReq} request
    * @return {!Uint8Array}
    */
   function(request) {
@@ -194,7 +192,7 @@ const methodInfo_ContestBoard_GetMeasurements = new grpc.web.AbstractClientBase.
 
 
 /**
- * @param {!proto.google.protobuf.Empty} request The
+ * @param {!proto.contestboard.GetMeasurementsReq} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
@@ -215,7 +213,7 @@ proto.contestboard.ContestBoardClient.prototype.getMeasurements =
 
 
 /**
- * @param {!proto.google.protobuf.Empty} request The
+ * @param {!proto.contestboard.GetMeasurementsReq} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata

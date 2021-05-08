@@ -72,7 +72,7 @@ export default {
 import { ref } from "vue";
 import todo_pb from "../contest_board_pb";
 import grpc_web from "../contest_board_grpc_web_pb";
-import { Empty } from "google-protobuf/google/protobuf/empty_pb";
+// import { Empty } from "google-protobuf/google/protobuf/empty_pb";
 const { GetMeasurementsRes } = todo_pb;
 export const todos = ref([]);
 // export const todos = ref([
@@ -94,7 +94,8 @@ const { ContestBoardClient } = grpc_web;
 const client = new ContestBoardClient("http://localhost:8081", null, null);
 console.log("tes");
 export const getMeasures = () => {
-  client.getMeasurements(new Empty(), {}, (err, response) => {
+  let getRequest = new getTodoParams();
+  client.getMeasurements(getRequest, {}, (err, response) => {
     if (err) console.log(err);
     console.log(response.toObject().getMeasurementList);
     todos.value = response.toObject().getMeasurementList;

@@ -10,7 +10,6 @@ import (
 
 	pb "github.com/shimodatkh/contest-board/proto"
 	"google.golang.org/grpc"
-	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 var (
@@ -31,9 +30,9 @@ func (s *contestBoardServer) PutMeasurement(ctx context.Context, req *pb.PutMeas
 	return &pb.PutMeasurementRes{Id: req.Id, Score: req.Score}, nil
 }
 
-func (s *contestBoardServer) GetMeasurements(ctx context.Context, in *emptypb.Empty) (*pb.GetMeasurementsRes, error) {
+func (s *contestBoardServer) GetMeasurements(ctx context.Context, req *pb.GetMeasurementsReq) (*pb.GetMeasurementsRes, error) {
 	log.Printf("receive GetMeasurements request")
-	return &pb.GetMeasurementsRes{Measurement: s.savedMeasurements}, nil
+	return &pb.GetMeasurementsRes{Measurements: s.savedMeasurements}, nil
 }
 
 func newServer() *contestBoardServer {
