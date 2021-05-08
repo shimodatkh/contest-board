@@ -1,4 +1,4 @@
-package main
+package sender
 
 import (
 	"context"
@@ -6,7 +6,7 @@ import (
 	"log"
 	"time"
 
-	pb "github.com/shimodatkh/contest-board/server"
+	pb "github.com/shimodatkh/contest-board/server/proto"
 	"google.golang.org/grpc"
 )
 
