@@ -8,7 +8,7 @@ import (
 	"net"
 	"sync"
 
-	pb "github.com/shimodatkh/contest-board/proto"
+	pb "github.com/shimodatkh/contest-board/server"
 	"google.golang.org/grpc"
 )
 

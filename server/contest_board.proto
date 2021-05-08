@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "github.com/shimodatkh/contest-board/proto/contestboard";
+option go_package = "github.com/shimodatkh/contest-board/server/contestboard";
 
 // import "google/protobuf/empty.proto";
 

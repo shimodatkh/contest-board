@@ -137,5 +137,5 @@ var ContestBoard_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "proto/contest_board.proto",
+	Metadata: "server/contest_board.proto",
 }
