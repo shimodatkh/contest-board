@@ -7,7 +7,6 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
-	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -21,7 +20,8 @@ const _ = grpc.SupportPackageIsVersion7
 type ContestBoardClient interface {
 	// rpc GetMeasurement(GetMeasurementReq) returns (GetMeasurementRes) {}
 	PutMeasurement(ctx context.Context, in *PutMeasurementReq, opts ...grpc.CallOption) (*PutMeasurementRes, error)
-	GetMeasurements(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetMeasurementsRes, error)
+	// rpc GetMeasurements(google.protobuf.Empty) returns (GetMeasurementsRes) {}
+	GetMeasurements(ctx context.Context, in *GetMeasurementsReq, opts ...grpc.CallOption) (*GetMeasurementsRes, error)
 }
 
 type contestBoardClient struct {
@@ -41,7 +41,7 @@ func (c *contestBoardClient) PutMeasurement(ctx context.Context, in *PutMeasurem
 	return out, nil
 }
 
-func (c *contestBoardClient) GetMeasurements(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetMeasurementsRes, error) {
+func (c *contestBoardClient) GetMeasurements(ctx context.Context, in *GetMeasurementsReq, opts ...grpc.CallOption) (*GetMeasurementsRes, error) {
 	out := new(GetMeasurementsRes)
 	err := c.cc.Invoke(ctx, "/contestboard.ContestBoard/GetMeasurements", in, out, opts...)
 	if err != nil {
@@ -56,7 +56,8 @@ func (c *contestBoardClient) GetMeasurements(ctx context.Context, in *emptypb.Em
 type ContestBoardServer interface {
 	// rpc GetMeasurement(GetMeasurementReq) returns (GetMeasurementRes) {}
 	PutMeasurement(context.Context, *PutMeasurementReq) (*PutMeasurementRes, error)
-	GetMeasurements(context.Context, *emptypb.Empty) (*GetMeasurementsRes, error)
+	// rpc GetMeasurements(google.protobuf.Empty) returns (GetMeasurementsRes) {}
+	GetMeasurements(context.Context, *GetMeasurementsReq) (*GetMeasurementsRes, error)
 	mustEmbedUnimplementedContestBoardServer()
 }
 
@@ -67,7 +68,7 @@ type UnimplementedContestBoardServer struct {
 func (UnimplementedContestBoardServer) PutMeasurement(context.Context, *PutMeasurementReq) (*PutMeasurementRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PutMeasurement not implemented")
 }
-func (UnimplementedContestBoardServer) GetMeasurements(context.Context, *emptypb.Empty) (*GetMeasurementsRes, error) {
+func (UnimplementedContestBoardServer) GetMeasurements(context.Context, *GetMeasurementsReq) (*GetMeasurementsRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMeasurements not implemented")
 }
 func (UnimplementedContestBoardServer) mustEmbedUnimplementedContestBoardServer() {}
@@ -102,7 +103,7 @@ func _ContestBoard_PutMeasurement_Handler(srv interface{}, ctx context.Context, 
 }
 
 func _ContestBoard_GetMeasurements_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(emptypb.Empty)
+	in := new(GetMeasurementsReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -114,7 +115,7 @@ func _ContestBoard_GetMeasurements_Handler(srv interface{}, ctx context.Context,
 		FullMethod: "/contestboard.ContestBoard/GetMeasurements",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ContestBoardServer).GetMeasurements(ctx, req.(*emptypb.Empty))
+		return srv.(ContestBoardServer).GetMeasurements(ctx, req.(*GetMeasurementsReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }

@@ -2,14 +2,15 @@ syntax = "proto3";
 
 option go_package = "github.com/shimodatkh/contest-board/proto/contestboard";
 
-import "google/protobuf/empty.proto";
+// import "google/protobuf/empty.proto";
 
 package contestboard;
 
 service ContestBoard {
     // rpc GetMeasurement(GetMeasurementReq) returns (GetMeasurementRes) {}
     rpc PutMeasurement(PutMeasurementReq) returns (PutMeasurementRes) {}
-    rpc GetMeasurements(google.protobuf.Empty) returns (GetMeasurementsRes) {}
+    // rpc GetMeasurements(google.protobuf.Empty) returns (GetMeasurementsRes) {}
+    rpc GetMeasurements(GetMeasurementsReq) returns (GetMeasurementsRes) {}
 }
 
 message PutMeasurementReq{
@@ -22,8 +23,10 @@ message PutMeasurementRes{
     float score = 2;
 }
 
+message GetMeasurementsReq{}
+
 message GetMeasurementsRes{
-    repeated Measurement measurement = 1;
+    repeated Measurement measurements = 1;
 }
 
 message Measurement{

@@ -14,7 +14,7 @@ import (
 )
 
 var (
-	port = flag.Int("port", 8080, "The server port")
+	port = flag.Int("port", 8081, "The server port")
 )
 
 type contestBoardServer struct {
