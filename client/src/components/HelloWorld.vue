@@ -9,7 +9,7 @@
       >.
     </p>
     <ul class="flex flex-col mt-6 rounded-lg border divide-y divide-gray-400">
-      <li
+      <!-- <li
         v-for="todo in todos"
         :key="todo.Id"
         class="p-4 border-grey flex items-stretch"
@@ -17,7 +17,7 @@
         <p class="flex-1">
           {{ todo.Score }}
         </p>
-      </li>
+      </li> -->
     </ul>
     {{ msg1 }}
     <br />
@@ -36,8 +36,8 @@
       </p>
     </li>
     <br />
-    {{ ret }}
-    {{ todos }}
+    <!-- {{ ret }} -->
+    <!-- {{ todos }} -->
   </div>
 </template>
 
@@ -72,33 +72,19 @@ export default {
 import { ref } from "vue";
 import todo_pb from "../contest_board_pb";
 import grpc_web from "../contest_board_grpc_web_pb";
-// import { Empty } from "google-protobuf/google/protobuf/empty_pb";
-const { GetMeasurementsRes } = todo_pb;
-export const todos = ref([]);
-// export const todos = ref([
-//   {
-//     Id: 1,
-//     Score: 81.2,
-//   },
-//   {
-//     Id: 1,
-//     Score: 18.2,
-//   },
-//   {
-//     Id: 1,
-//     Score: 18.2,
-//   },
-// ]);
-export const msg1 = "aaa";
+
+const { GetMeasurementsReq } = todo_pb;
 const { ContestBoardClient } = grpc_web;
+
+export const todos = ref([]);
 const client = new ContestBoardClient("http://localhost:8081", null, null);
 console.log("tes");
 export const getMeasures = () => {
-  let getRequest = new getTodoParams();
+  let getRequest = new GetMeasurementsReq();
   client.getMeasurements(getRequest, {}, (err, response) => {
     if (err) console.log(err);
-    console.log(response.toObject().getMeasurementList);
-    todos.value = response.toObject().getMeasurementList;
+    console.log(response.toObject());
+    todos.value = response.toObject().measurementsList;
     // return {
     //   ret: response.toObject().getMeasurementList,
     // };

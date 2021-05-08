@@ -51,6 +51,6 @@ func main() {
 	var opts []grpc.ServerOption
 	grpcServer := grpc.NewServer(opts...)
 	pb.RegisterContestBoardServer(grpcServer, newServer())
-	log.Printf("start server")
+	log.Printf("start server. port: %d", *port)
 	grpcServer.Serve(lis)
 }
