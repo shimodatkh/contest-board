@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-option go_package = "github.com/shimodatkh/contest-board/server/proto";
+option go_package = "github.com/shimodatkh/contest-board/proto/contestboard";
 
 // import "google/protobuf/empty.proto";
 
-package proto;
+package contestboard;
 
 service ContestBoard {
     // rpc GetMeasurement(GetMeasurementReq) returns (GetMeasurementRes) {}
