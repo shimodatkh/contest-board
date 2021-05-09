@@ -6,30 +6,30 @@ option go_package = "github.com/shimodatkh/contest-board/proto/contestboard";
 
 package contestboard;
 
-service ContestBoard {
+service contestBoardService {
     // rpc GetMeasurement(GetMeasurementReq) returns (GetMeasurementRes) {}
-    rpc PutMeasurement(PutMeasurementReq) returns (PutMeasurementRes) {}
-    // rpc GetMeasurements(google.protobuf.Empty) returns (GetMeasurementsRes) {}
-    rpc GetMeasurements(GetMeasurementsReq) returns (GetMeasurementsRes) {}
+    rpc putMeasurement(putMeasurementReq) returns (putMeasurementRes) {}
+    // rpc getMeasurements(google.protobuf.Empty) returns (getMeasurementsRes) {}
+    rpc getMeasurements(getMeasurementsReq) returns (getMeasurementsRes) {}
 }
 
-message PutMeasurementReq{
+message putMeasurementReq{
     int32 id = 1;
     float score = 2;
 }
 
-message PutMeasurementRes{
+message putMeasurementRes{
     int32 id = 1;
     float score = 2;
 }
 
-message GetMeasurementsReq{}
+message getMeasurementsReq{}
 
-message GetMeasurementsRes{
-    repeated Measurement measurements = 1;
+message getMeasurementsRes{
+    repeated measurement measurements = 1;
 }
 
-message Measurement{
+message measurement{
     int32 id = 1;
     float score = 2;
 }

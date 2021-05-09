@@ -73,14 +73,18 @@ import { ref } from "vue";
 import todo_pb from "../contest_board_pb";
 import grpc_web from "../contest_board_grpc_web_pb";
 
-const { GetMeasurementsReq } = todo_pb;
-const { ContestBoardClient } = grpc_web;
+const { getMeasurementsReq } = todo_pb;
+const { contestBoardServiceClient } = grpc_web;
 
 export const todos = ref([]);
-const client = new ContestBoardClient("http://localhost:8080", null, null);
+const client = new contestBoardServiceClient(
+  "http://localhost:8080",
+  null,
+  null
+);
 console.log("tes");
-export const GetMeasurements = () => {
-  let getRequest = new GetMeasurementsReq();
+export const getMeasurements = () => {
+  let getRequest = new getMeasurementsReq();
   client.getMeasurements(getRequest, {}, (err, response) => {
     if (err) console.log(err);
     console.log(response.toObject());
@@ -90,7 +94,7 @@ export const GetMeasurements = () => {
     // };
   });
 };
-GetMeasurements();
+getMeasurements();
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
