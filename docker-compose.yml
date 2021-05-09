@@ -20,6 +20,8 @@ services:
   server:
     build: ./server
     image: contest-board-grpc-server:v1
+    ports: 
+      - 9090:9090
     restart: unless-stopped
     networks:
       - grpc-contest-board

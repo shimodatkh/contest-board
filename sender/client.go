@@ -11,7 +11,7 @@ import (
 )
 
 var (
-	serverAddr = flag.String("server_addr", "localhost:8080", "The server address in the format of host:port")
+	serverAddr = flag.String("server_addr", "localhost:9090", "The server address in the format of host:port")
 )
 
 func putMeasure(client pb.ContestBoardClient, measure *pb.PutMeasurementReq) {

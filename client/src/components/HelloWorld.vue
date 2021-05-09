@@ -79,7 +79,7 @@ const { ContestBoardClient } = grpc_web;
 export const todos = ref([]);
 const client = new ContestBoardClient("http://localhost:8080", null, null);
 console.log("tes");
-export const getMeasures = () => {
+export const GetMeasurements = () => {
   let getRequest = new GetMeasurementsReq();
   client.getMeasurements(getRequest, {}, (err, response) => {
     if (err) console.log(err);
@@ -90,7 +90,7 @@ export const getMeasures = () => {
     // };
   });
 };
-getMeasures();
+GetMeasurements();
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
