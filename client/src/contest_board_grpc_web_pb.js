@@ -26,7 +26,7 @@ proto.contestboard = require('./contest_board_pb.js');
  * @struct
  * @final
  */
-proto.contestboard.ContestBoardClient =
+proto.contestboard.contestBoardServiceClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options['format'] = 'text';
@@ -52,7 +52,7 @@ proto.contestboard.ContestBoardClient =
  * @struct
  * @final
  */
-proto.contestboard.ContestBoardPromiseClient =
+proto.contestboard.contestBoardServicePromiseClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options['format'] = 'text';
@@ -73,160 +73,160 @@ proto.contestboard.ContestBoardPromiseClient =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.contestboard.PutMeasurementReq,
- *   !proto.contestboard.PutMeasurementRes>}
+ *   !proto.contestboard.putMeasurementReq,
+ *   !proto.contestboard.putMeasurementRes>}
  */
-const methodDescriptor_ContestBoard_PutMeasurement = new grpc.web.MethodDescriptor(
-  '/contestboard.ContestBoard/PutMeasurement',
+const methodDescriptor_contestBoardService_putMeasurement = new grpc.web.MethodDescriptor(
+  '/contestboard.contestBoardService/putMeasurement',
   grpc.web.MethodType.UNARY,
-  proto.contestboard.PutMeasurementReq,
-  proto.contestboard.PutMeasurementRes,
+  proto.contestboard.putMeasurementReq,
+  proto.contestboard.putMeasurementRes,
   /**
-   * @param {!proto.contestboard.PutMeasurementReq} request
+   * @param {!proto.contestboard.putMeasurementReq} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.contestboard.PutMeasurementRes.deserializeBinary
+  proto.contestboard.putMeasurementRes.deserializeBinary
 );
 
 
 /**
  * @const
  * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.contestboard.PutMeasurementReq,
- *   !proto.contestboard.PutMeasurementRes>}
+ *   !proto.contestboard.putMeasurementReq,
+ *   !proto.contestboard.putMeasurementRes>}
  */
-const methodInfo_ContestBoard_PutMeasurement = new grpc.web.AbstractClientBase.MethodInfo(
-  proto.contestboard.PutMeasurementRes,
+const methodInfo_contestBoardService_putMeasurement = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.contestboard.putMeasurementRes,
   /**
-   * @param {!proto.contestboard.PutMeasurementReq} request
+   * @param {!proto.contestboard.putMeasurementReq} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.contestboard.PutMeasurementRes.deserializeBinary
+  proto.contestboard.putMeasurementRes.deserializeBinary
 );
 
 
 /**
- * @param {!proto.contestboard.PutMeasurementReq} request The
+ * @param {!proto.contestboard.putMeasurementReq} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.Error, ?proto.contestboard.PutMeasurementRes)}
+ * @param {function(?grpc.web.Error, ?proto.contestboard.putMeasurementRes)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.contestboard.PutMeasurementRes>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.contestboard.putMeasurementRes>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.contestboard.ContestBoardClient.prototype.putMeasurement =
+proto.contestboard.contestBoardServiceClient.prototype.putMeasurement =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/contestboard.ContestBoard/PutMeasurement',
+      '/contestboard.contestBoardService/putMeasurement',
       request,
       metadata || {},
-      methodDescriptor_ContestBoard_PutMeasurement,
+      methodDescriptor_contestBoardService_putMeasurement,
       callback);
 };
 
 
 /**
- * @param {!proto.contestboard.PutMeasurementReq} request The
+ * @param {!proto.contestboard.putMeasurementReq} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.contestboard.PutMeasurementRes>}
+ * @return {!Promise<!proto.contestboard.putMeasurementRes>}
  *     Promise that resolves to the response
  */
-proto.contestboard.ContestBoardPromiseClient.prototype.putMeasurement =
+proto.contestboard.contestBoardServicePromiseClient.prototype.putMeasurement =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/contestboard.ContestBoard/PutMeasurement',
+      '/contestboard.contestBoardService/putMeasurement',
       request,
       metadata || {},
-      methodDescriptor_ContestBoard_PutMeasurement);
+      methodDescriptor_contestBoardService_putMeasurement);
 };
 
 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.contestboard.GetMeasurementsReq,
- *   !proto.contestboard.GetMeasurementsRes>}
+ *   !proto.contestboard.getMeasurementsReq,
+ *   !proto.contestboard.getMeasurementsRes>}
  */
-const methodDescriptor_ContestBoard_GetMeasurements = new grpc.web.MethodDescriptor(
-  '/contestboard.ContestBoard/GetMeasurements',
+const methodDescriptor_contestBoardService_getMeasurements = new grpc.web.MethodDescriptor(
+  '/contestboard.contestBoardService/getMeasurements',
   grpc.web.MethodType.UNARY,
-  proto.contestboard.GetMeasurementsReq,
-  proto.contestboard.GetMeasurementsRes,
+  proto.contestboard.getMeasurementsReq,
+  proto.contestboard.getMeasurementsRes,
   /**
-   * @param {!proto.contestboard.GetMeasurementsReq} request
+   * @param {!proto.contestboard.getMeasurementsReq} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.contestboard.GetMeasurementsRes.deserializeBinary
+  proto.contestboard.getMeasurementsRes.deserializeBinary
 );
 
 
 /**
  * @const
  * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.contestboard.GetMeasurementsReq,
- *   !proto.contestboard.GetMeasurementsRes>}
+ *   !proto.contestboard.getMeasurementsReq,
+ *   !proto.contestboard.getMeasurementsRes>}
  */
-const methodInfo_ContestBoard_GetMeasurements = new grpc.web.AbstractClientBase.MethodInfo(
-  proto.contestboard.GetMeasurementsRes,
+const methodInfo_contestBoardService_getMeasurements = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.contestboard.getMeasurementsRes,
   /**
-   * @param {!proto.contestboard.GetMeasurementsReq} request
+   * @param {!proto.contestboard.getMeasurementsReq} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.contestboard.GetMeasurementsRes.deserializeBinary
+  proto.contestboard.getMeasurementsRes.deserializeBinary
 );
 
 
 /**
- * @param {!proto.contestboard.GetMeasurementsReq} request The
+ * @param {!proto.contestboard.getMeasurementsReq} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.Error, ?proto.contestboard.GetMeasurementsRes)}
+ * @param {function(?grpc.web.Error, ?proto.contestboard.getMeasurementsRes)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.contestboard.GetMeasurementsRes>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.contestboard.getMeasurementsRes>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.contestboard.ContestBoardClient.prototype.getMeasurements =
+proto.contestboard.contestBoardServiceClient.prototype.getMeasurements =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/contestboard.ContestBoard/GetMeasurements',
+      '/contestboard.contestBoardService/getMeasurements',
       request,
       metadata || {},
-      methodDescriptor_ContestBoard_GetMeasurements,
+      methodDescriptor_contestBoardService_getMeasurements,
       callback);
 };
 
 
 /**
- * @param {!proto.contestboard.GetMeasurementsReq} request The
+ * @param {!proto.contestboard.getMeasurementsReq} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.contestboard.GetMeasurementsRes>}
+ * @return {!Promise<!proto.contestboard.getMeasurementsRes>}
  *     Promise that resolves to the response
  */
-proto.contestboard.ContestBoardPromiseClient.prototype.getMeasurements =
+proto.contestboard.contestBoardServicePromiseClient.prototype.getMeasurements =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/contestboard.ContestBoard/GetMeasurements',
+      '/contestboard.contestBoardService/getMeasurements',
       request,
       metadata || {},
-      methodDescriptor_ContestBoard_GetMeasurements);
+      methodDescriptor_contestBoardService_getMeasurements);
 };
 
 

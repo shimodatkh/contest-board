@@ -14,126 +14,126 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// ContestBoardClient is the client API for ContestBoard service.
+// ContestBoardServiceClient is the client API for ContestBoardService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type ContestBoardClient interface {
+type ContestBoardServiceClient interface {
 	// rpc GetMeasurement(GetMeasurementReq) returns (GetMeasurementRes) {}
 	PutMeasurement(ctx context.Context, in *PutMeasurementReq, opts ...grpc.CallOption) (*PutMeasurementRes, error)
-	// rpc GetMeasurements(google.protobuf.Empty) returns (GetMeasurementsRes) {}
+	// rpc getMeasurements(google.protobuf.Empty) returns (getMeasurementsRes) {}
 	GetMeasurements(ctx context.Context, in *GetMeasurementsReq, opts ...grpc.CallOption) (*GetMeasurementsRes, error)
 }
 
-type contestBoardClient struct {
+type contestBoardServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewContestBoardClient(cc grpc.ClientConnInterface) ContestBoardClient {
-	return &contestBoardClient{cc}
+func NewContestBoardServiceClient(cc grpc.ClientConnInterface) ContestBoardServiceClient {
+	return &contestBoardServiceClient{cc}
 }
 
-func (c *contestBoardClient) PutMeasurement(ctx context.Context, in *PutMeasurementReq, opts ...grpc.CallOption) (*PutMeasurementRes, error) {
+func (c *contestBoardServiceClient) PutMeasurement(ctx context.Context, in *PutMeasurementReq, opts ...grpc.CallOption) (*PutMeasurementRes, error) {
 	out := new(PutMeasurementRes)
-	err := c.cc.Invoke(ctx, "/contestboard.ContestBoard/PutMeasurement", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/contestboard.contestBoardService/putMeasurement", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *contestBoardClient) GetMeasurements(ctx context.Context, in *GetMeasurementsReq, opts ...grpc.CallOption) (*GetMeasurementsRes, error) {
+func (c *contestBoardServiceClient) GetMeasurements(ctx context.Context, in *GetMeasurementsReq, opts ...grpc.CallOption) (*GetMeasurementsRes, error) {
 	out := new(GetMeasurementsRes)
-	err := c.cc.Invoke(ctx, "/contestboard.ContestBoard/GetMeasurements", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/contestboard.contestBoardService/getMeasurements", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// ContestBoardServer is the server API for ContestBoard service.
-// All implementations must embed UnimplementedContestBoardServer
+// ContestBoardServiceServer is the server API for ContestBoardService service.
+// All implementations must embed UnimplementedContestBoardServiceServer
 // for forward compatibility
-type ContestBoardServer interface {
+type ContestBoardServiceServer interface {
 	// rpc GetMeasurement(GetMeasurementReq) returns (GetMeasurementRes) {}
 	PutMeasurement(context.Context, *PutMeasurementReq) (*PutMeasurementRes, error)
-	// rpc GetMeasurements(google.protobuf.Empty) returns (GetMeasurementsRes) {}
+	// rpc getMeasurements(google.protobuf.Empty) returns (getMeasurementsRes) {}
 	GetMeasurements(context.Context, *GetMeasurementsReq) (*GetMeasurementsRes, error)
-	mustEmbedUnimplementedContestBoardServer()
+	mustEmbedUnimplementedContestBoardServiceServer()
 }
 
-// UnimplementedContestBoardServer must be embedded to have forward compatible implementations.
-type UnimplementedContestBoardServer struct {
+// UnimplementedContestBoardServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedContestBoardServiceServer struct {
 }
 
-func (UnimplementedContestBoardServer) PutMeasurement(context.Context, *PutMeasurementReq) (*PutMeasurementRes, error) {
+func (UnimplementedContestBoardServiceServer) PutMeasurement(context.Context, *PutMeasurementReq) (*PutMeasurementRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PutMeasurement not implemented")
 }
-func (UnimplementedContestBoardServer) GetMeasurements(context.Context, *GetMeasurementsReq) (*GetMeasurementsRes, error) {
+func (UnimplementedContestBoardServiceServer) GetMeasurements(context.Context, *GetMeasurementsReq) (*GetMeasurementsRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMeasurements not implemented")
 }
-func (UnimplementedContestBoardServer) mustEmbedUnimplementedContestBoardServer() {}
+func (UnimplementedContestBoardServiceServer) mustEmbedUnimplementedContestBoardServiceServer() {}
 
-// UnsafeContestBoardServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to ContestBoardServer will
+// UnsafeContestBoardServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to ContestBoardServiceServer will
 // result in compilation errors.
-type UnsafeContestBoardServer interface {
-	mustEmbedUnimplementedContestBoardServer()
+type UnsafeContestBoardServiceServer interface {
+	mustEmbedUnimplementedContestBoardServiceServer()
 }
 
-func RegisterContestBoardServer(s grpc.ServiceRegistrar, srv ContestBoardServer) {
-	s.RegisterService(&ContestBoard_ServiceDesc, srv)
+func RegisterContestBoardServiceServer(s grpc.ServiceRegistrar, srv ContestBoardServiceServer) {
+	s.RegisterService(&ContestBoardService_ServiceDesc, srv)
 }
 
-func _ContestBoard_PutMeasurement_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ContestBoardService_PutMeasurement_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(PutMeasurementReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ContestBoardServer).PutMeasurement(ctx, in)
+		return srv.(ContestBoardServiceServer).PutMeasurement(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/contestboard.ContestBoard/PutMeasurement",
+		FullMethod: "/contestboard.contestBoardService/putMeasurement",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ContestBoardServer).PutMeasurement(ctx, req.(*PutMeasurementReq))
+		return srv.(ContestBoardServiceServer).PutMeasurement(ctx, req.(*PutMeasurementReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ContestBoard_GetMeasurements_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ContestBoardService_GetMeasurements_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetMeasurementsReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ContestBoardServer).GetMeasurements(ctx, in)
+		return srv.(ContestBoardServiceServer).GetMeasurements(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/contestboard.ContestBoard/GetMeasurements",
+		FullMethod: "/contestboard.contestBoardService/getMeasurements",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ContestBoardServer).GetMeasurements(ctx, req.(*GetMeasurementsReq))
+		return srv.(ContestBoardServiceServer).GetMeasurements(ctx, req.(*GetMeasurementsReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// ContestBoard_ServiceDesc is the grpc.ServiceDesc for ContestBoard service.
+// ContestBoardService_ServiceDesc is the grpc.ServiceDesc for ContestBoardService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var ContestBoard_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "contestboard.ContestBoard",
-	HandlerType: (*ContestBoardServer)(nil),
+var ContestBoardService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "contestboard.contestBoardService",
+	HandlerType: (*ContestBoardServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "PutMeasurement",
-			Handler:    _ContestBoard_PutMeasurement_Handler,
+			MethodName: "putMeasurement",
+			Handler:    _ContestBoardService_PutMeasurement_Handler,
 		},
 		{
-			MethodName: "GetMeasurements",
-			Handler:    _ContestBoard_GetMeasurements_Handler,
+			MethodName: "getMeasurements",
+			Handler:    _ContestBoardService_GetMeasurements_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
