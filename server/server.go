@@ -16,13 +16,13 @@ var (
 	port = flag.Int("port", 9090, "The server port")
 )
 
-type contestBoardServer struct {
-	pb.UnimplementedContestBoardServer
+type contestBoardServiceServer struct {
+	pb.UnimplementedContestBoardServiceServer
 	savedMeasurements []*pb.Measurement
 	mu                sync.Mutex
 }
 
-func (s *contestBoardServer) PutMeasurement(ctx context.Context, req *pb.PutMeasurementReq) (*pb.PutMeasurementRes, error) {
+func (s *contestBoardServiceServer) PutMeasurement(ctx context.Context, req *pb.PutMeasurementReq) (*pb.PutMeasurementRes, error) {
 	log.Printf("receive PutMeasurement request: %d, %f", req.Id, req.Score)
 	s.mu.Lock()
 	s.savedMeasurements = append(s.savedMeasurements, &pb.Measurement{Id: req.Id, Score: req.Score})
@@ -30,13 +30,13 @@ func (s *contestBoardServer) PutMeasurement(ctx context.Context, req *pb.PutMeas
 	return &pb.PutMeasurementRes{Id: req.Id, Score: req.Score}, nil
 }
 
-func (s *contestBoardServer) GetMeasurements(ctx context.Context, req *pb.GetMeasurementsReq) (*pb.GetMeasurementsRes, error) {
+func (s *contestBoardServiceServer) GetMeasurements(ctx context.Context, req *pb.GetMeasurementsReq) (*pb.GetMeasurementsRes, error) {
 	log.Printf("receive GetMeasurements request")
 	return &pb.GetMeasurementsRes{Measurements: s.savedMeasurements}, nil
 }
 
-func newServer() *contestBoardServer {
-	s := &contestBoardServer{
+func newServer() *contestBoardServiceServer {
+	s := &contestBoardServiceServer{
 		savedMeasurements: make([]*pb.Measurement, 0),
 	}
 	return s
@@ -51,7 +51,7 @@ func main() {
 	}
 	var opts []grpc.ServerOption
 	grpcServer := grpc.NewServer(opts...)
-	pb.RegisterContestBoardServer(grpcServer, newServer())
+	pb.RegisterContestBoardServiceServer(grpcServer, newServer())
 	log.Printf("start server. host:%s, port: %d", host, *port)
 	grpcServer.Serve(lis)
 }

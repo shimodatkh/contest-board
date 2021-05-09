@@ -14,7 +14,7 @@ var (
 	serverAddr = flag.String("server_addr", "localhost:9090", "The server address in the format of host:port")
 )
 
-func putMeasure(client pb.ContestBoardClient, measure *pb.PutMeasurementReq) {
+func putMeasure(client pb.ContestBoardServiceClient, measure *pb.PutMeasurementReq) {
 	log.Printf("[Client] kick PutMeasurement (%d, %f)", measure.Id, measure.Score)
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
@@ -25,7 +25,7 @@ func putMeasure(client pb.ContestBoardClient, measure *pb.PutMeasurementReq) {
 	log.Println(feature)
 }
 
-func getMeasures(client pb.ContestBoardClient, req *pb.GetMeasurementsReq) {
+func getMeasures(client pb.ContestBoardServiceClient, req *pb.GetMeasurementsReq) {
 	log.Printf("[Client] kick GetMeasurements")
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
@@ -48,7 +48,7 @@ func main() {
 		log.Fatalf("fail to dial: %v", err)
 	}
 	defer conn.Close()
-	client := pb.NewContestBoardClient(conn)
+	client := pb.NewContestBoardServiceClient(conn)
 
 	// Looking for a valid feature
 	putMeasure(client, &pb.PutMeasurementReq{Id: 123, Score: 10.8})

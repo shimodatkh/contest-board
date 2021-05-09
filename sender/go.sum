@@ -40,6 +40,8 @@ github.com/shimodatkh/contest-board/proto v0.0.0-20210504181231-2bfdaeb43da9 h1:
 github.com/shimodatkh/contest-board/proto v0.0.0-20210504181231-2bfdaeb43da9/go.mod h1:GCAOBKnm16F0WhSTEiNZ3dkFN4j52p+AEG7XuFWODM0=
 github.com/shimodatkh/contest-board/proto v0.0.0-20210508130810-29c170389474 h1:Y9kGHz0EZ8FsTDjr1AM7qJV6gxtlC5pOSHquyznvReA=
 github.com/shimodatkh/contest-board/proto v0.0.0-20210508130810-29c170389474/go.mod h1:GCAOBKnm16F0WhSTEiNZ3dkFN4j52p+AEG7XuFWODM0=
+github.com/shimodatkh/contest-board/proto v0.0.0-20210509082353-1e8306649308 h1:tUdd0M439Py9fXtdzesfmN6cf8RraXzk9lou5xUJ4M0=
+github.com/shimodatkh/contest-board/proto v0.0.0-20210509082353-1e8306649308/go.mod h1:GCAOBKnm16F0WhSTEiNZ3dkFN4j52p+AEG7XuFWODM0=
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=
 github.com/stretchr/testify v1.5.1/go.mod h1:5W2xD1RspED5o8YsWQXVCued0rvSQ+mT+I5cxcmMvtA=
 github.com/yuin/goldmark v1.2.1/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
