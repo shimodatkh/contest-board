@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"flag"
-	"fmt"
 	"log"
 	"net"
 	"sync"
@@ -45,7 +44,8 @@ func newServer() *contestBoardServer {
 
 func main() {
 	flag.Parse()
-	lis, err := net.Listen("tcp", fmt.Sprintf("%s:%d", host, *port))
+	// lis, err := net.Listen("tcp", fmt.Sprintf("%s:%d", host, *port))
+	lis, err := net.Listen("tcp", ":9090")
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}
